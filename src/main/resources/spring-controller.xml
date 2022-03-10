@@ -27,4 +27,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
    </bean>
    
    <bean class="controller.CommonExceptionHandler"></bean>
+   
+   
+   <bean class="board.FileUtils"></bean>
 </beans>

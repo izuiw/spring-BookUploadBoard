@@ -2,13 +2,12 @@ package board;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FilenameUtils;
-import org.springframework.http.HttpRequest;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 public class InsertService {
@@ -29,6 +28,12 @@ public class InsertService {
 
 		MultipartFile image = insertVO.getImage();
 		if (!image.isEmpty()) {
+			InputStream inputStream = image.getInputStream();
+			boolean isValid = FileUtils.validImgFile(inputStream);
+			
+			if(!isValid) {
+				throw new NotImageFileException("image" + insertVO.getImage());
+			}
 			UUID uuid = UUID.randomUUID();
 			String originalFilename = image.getOriginalFilename();
 			String ext = FilenameUtils.getExtension(originalFilename);

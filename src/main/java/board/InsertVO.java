@@ -1,8 +1,12 @@
 package board;
 
+import org.apache.ibatis.type.Alias;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
 
+@Alias("InsertVO")
 public class InsertVO {
+	@Length(min=8, max=8, message="8자리 숫자 입력")
 	private String isbn;
 	private String name;
 	private MultipartFile image;
