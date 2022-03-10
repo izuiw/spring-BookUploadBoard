@@ -54,8 +54,7 @@ public class InsertController {
 			return "redirect:/list";
 
 		} catch (NotImageFileException e) {
-			errors.reject("image", "이미지 파일이 아닙니다.");
-			//e.printStackTrace();
+		
 			return "/books/book_reg_form";
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -13,9 +13,10 @@ public class FileUtils {
 	
 	public static boolean validImgFile(InputStream inputStream) {
 		try {
-			List<String> notValidTypeList = Arrays.asList("image/jpeg", "image/pjpeg", "image/gif", "image/bmp", "image/x-windows-bmp");
+			List<String> notValidTypeList = Arrays.asList("image/jpg","image/jpeg", "image/pjpeg", "image/gif", "image/bmp", "image/x-windows-bmp");
 			
 			String mimeType = tika.detect(inputStream);
+			System.out.println(mimeType);
 			
 			boolean isValid = notValidTypeList.stream().anyMatch(notValidType->notValidType.equalsIgnoreCase(mimeType));
 			return isValid;

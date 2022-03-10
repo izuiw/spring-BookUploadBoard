@@ -130,7 +130,12 @@
 			<groupId>org.apache.tika</groupId>
 			<artifactId>tika-core</artifactId>
 			<version>1.24.1</version>
-		
+		</dependency>
+		<!-- 필요없는 설정같음 tika이용 경로 문제 해결되면 지울 예정 -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.0.1</version>
 		</dependency>
 	</dependencies>
 

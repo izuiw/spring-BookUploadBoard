@@ -29,27 +29,36 @@ public class InsertService {
 		MultipartFile image = insertVO.getImage();
 		if (!image.isEmpty()) {
 			InputStream inputStream = image.getInputStream();
-			boolean isValid = FileUtils.validImgFile(inputStream);
 			
+			boolean isValid = FileUtils.validImgFile(inputStream);
+			System.out.println("검증:"+isValid);
 			if(!isValid) {
+				System.out.println("이미지 파일 아님");
 				throw new NotImageFileException("image" + insertVO.getImage());
 			}
+			
 			UUID uuid = UUID.randomUUID();
 			String originalFilename = image.getOriginalFilename();
 			String ext = FilenameUtils.getExtension(originalFilename);
-			String webpath = "/resources/upload";
-			String realpath = request.getServletContext().getRealPath(webpath)+"/";
+			String webpath = "/resources/upload/";
+			String realpath = request.getSession().getServletContext().getRealPath(webpath);
 
 			
 			
 			filename = uuid + "." + ext;
 			
-			image.transferTo(new File(realpath + filename));
+			
+			try {
+				
+				image.transferTo(new File(realpath + filename));
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
 
 		}
 
 		insertVO.setFilename(filename);
-		//System.out.println("서비스 클래스 : " + insertVO);
+		System.out.println("서비스 클래스 : " + insertVO);
 
 		if(insertVO != null) {	
 			BooksVO booksVO = new BooksVO(insertVO.getIsbn(), insertVO.getFilename(),
@@ -57,7 +66,7 @@ public class InsertService {
 					insertVO.getName(), insertVO.getWriter(), insertVO.getPublisher(), insertVO.getContent(),
 					insertVO.getPrice());
 			booksDAO.insert(booksVO);
-			//System.out.println("booksVO : " + booksVO);
+			System.out.println("booksVO : " + booksVO);
 		}
 	}
 	
