@@ -79,7 +79,7 @@ function readURL(input) {
 			</tr>
 			<tr>
 				<td>*<spring:message code="image" /></td>
-				<td><form:input path="image" type="file" onchange="readURL(this);"/> <form:errors
+				<td><form:input path="image" type="file" onchange="readURL(this);" accept="image/*,.pdf"/> <form:errors
 						path="image" /></td>
 
 			</tr>
