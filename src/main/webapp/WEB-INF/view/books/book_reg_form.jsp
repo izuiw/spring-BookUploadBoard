@@ -74,12 +74,12 @@ function readURL(input) {
 			</tr>
 			<tr>
 				<td>*<spring:message code="price" /></td>
-				<td><form:input path="price" /> <form:errors path="price" /></td>
+				<td><form:input path="price" pattern="[0-9]+" placeholder="숫자 입력" /> <form:errors path="price" /></td>
 
 			</tr>
 			<tr>
 				<td>*<spring:message code="image" /></td>
-				<td><form:input path="image" type="file" onchange="readURL(this);" accept="image/*,.pdf"/> <form:errors
+				<td><form:input path="image" type="file" onchange="readURL(this);" accept="image/*"/> <form:errors
 						path="image" /></td>
 
 			</tr>
